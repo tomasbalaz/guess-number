@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class TextGuessNumber {
 
-	/** Default minimal number for guessing */ 
+	/** Default minimal number for guessing */
 	private static final int MIN_NUMBER_DEFAULT = 10;
 
 	/** Default maximal number for guessing */
@@ -18,17 +18,26 @@ public class TextGuessNumber {
 
 	/** Random number generated for guessing */
 	private int randomNumber;
-	
+
 	/** User entered number for guessing */
 	private int guessNumber;
 
 	/**
-	 * Default constructor which generates number for guessing
-	 * from interval : <1,10>
+	 * Default constructor which generates number for guessing from interval :
+	 * <1,10>
 	 * 
 	 */
 	public TextGuessNumber() {
 		randomNumber = getRandomNumber();
+	}
+
+	public TextGuessNumber(int minNumber, int maxNumber) {
+		if (maxNumber < minNumber) {
+			throw new IllegalArgumentException("Maximum value can not be less than Minimum value");
+		}
+		this.minNumber = minNumber;
+		this.maxNumber = maxNumber;
+		randomNumber = getRandomNumber(minNumber, maxNumber);
 	}
 
 	public GuessStatus guess(int guessNumber) {
@@ -47,6 +56,11 @@ public class TextGuessNumber {
 
 	/** Returns random number from minNumber to maxNumber */
 	private int getRandomNumber() {
+		return getRandomNumber(minNumber, maxNumber);
+	}
+
+	/** Returns random number from minNumber to maxNumber */
+	private int getRandomNumber(int minNumber, int maxNumber) {
 		return new Random().nextInt((maxNumber - minNumber) + 1) + minNumber;
 	}
 
