@@ -6,7 +6,7 @@ public class GuessNumberTest  {
 	
 	@Test
 	public void testIdealRun() {
-		GuessNumber guessNumber = new GuessNumber();
+		TextGuessNumber guessNumber = new TextGuessNumber();
 		
 		while(!guessNumber.isWon()) {
 			guessNumber.guess(1);
